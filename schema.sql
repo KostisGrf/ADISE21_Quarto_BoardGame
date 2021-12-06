@@ -38,6 +38,7 @@ CREATE TABLE `board` (
 
 LOCK TABLES `board` WRITE;
 /*!40000 ALTER TABLE `board` DISABLE KEYS */;
+INSERT INTO `board` VALUES (1,1,NULL),(1,2,NULL),(1,3,NULL),(1,4,NULL),(2,1,NULL),(2,2,NULL),(2,3,NULL),(2,4,NULL),(3,1,NULL),(3,2,NULL),(3,3,NULL),(3,4,NULL),(4,1,NULL),(4,2,NULL),(4,3,NULL),(4,4,NULL);
 /*!40000 ALTER TABLE `board` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -62,6 +63,7 @@ CREATE TABLE `board_empty` (
 
 LOCK TABLES `board_empty` WRITE;
 /*!40000 ALTER TABLE `board_empty` DISABLE KEYS */;
+INSERT INTO `board_empty` VALUES (1,1,NULL),(1,2,NULL),(1,3,NULL),(1,4,NULL),(2,1,NULL),(2,2,NULL),(2,3,NULL),(2,4,NULL),(3,1,NULL),(3,2,NULL),(3,3,NULL),(3,4,NULL),(4,1,NULL),(4,2,NULL),(4,3,NULL),(4,4,NULL);
 /*!40000 ALTER TABLE `board_empty` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -80,8 +82,8 @@ CREATE TABLE `game_status` (
   `last_change` timestamp NULL DEFAULT NULL,
   KEY `selected_piece` (`selected_piece`),
   KEY `p_turn` (`p_turn`),
-  CONSTRAINT `game_status_ibfk_1` FOREIGN KEY (`selected_piece`) REFERENCES `pieces` (`id`),
-  CONSTRAINT `game_status_ibfk_2` FOREIGN KEY (`p_turn`) REFERENCES `players` (`id`)
+  CONSTRAINT `game_status_ibfk_2` FOREIGN KEY (`p_turn`) REFERENCES `players` (`id`),
+  CONSTRAINT `game_status_ibfk_3` FOREIGN KEY (`selected_piece`) REFERENCES `pieces` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -118,6 +120,7 @@ CREATE TABLE `pieces` (
 
 LOCK TABLES `pieces` WRITE;
 /*!40000 ALTER TABLE `pieces` DISABLE KEYS */;
+INSERT INTO `pieces` VALUES (1,0,1,0,0,1),(2,0,1,0,1,1),(3,1,1,0,0,1),(4,1,1,0,1,1),(5,0,0,0,0,1),(6,0,0,0,1,1),(7,1,0,0,0,1),(8,1,0,0,1,1),(9,0,1,1,0,1),(10,0,1,1,1,1),(11,1,1,1,0,1),(12,1,1,1,1,1),(13,0,0,1,0,1),(14,0,0,1,1,1),(15,1,0,1,0,1),(16,1,0,1,1,1);
 /*!40000 ALTER TABLE `pieces` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -155,4 +158,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-12-05  4:05:58
+-- Dump completed on 2021-12-06  4:39:48
