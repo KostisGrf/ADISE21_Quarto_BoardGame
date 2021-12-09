@@ -133,7 +133,7 @@ DROP TABLE IF EXISTS `players`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `players` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `username` varchar(20) DEFAULT NULL,
   `token` varchar(100) DEFAULT NULL,
   `last_action` timestamp NULL DEFAULT NULL,
@@ -147,6 +147,7 @@ CREATE TABLE `players` (
 
 LOCK TABLES `players` WRITE;
 /*!40000 ALTER TABLE `players` DISABLE KEYS */;
+INSERT INTO `players` VALUES (1,NULL,NULL,NULL),(2,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `players` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -162,13 +163,17 @@ UNLOCK TABLES;
 /*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`` PROCEDURE `clean_board`()
+DROP procedure IF EXISTS `clean_board`;
+
+DELIMITER $$
+USE `quarto_adise`$$
+CREATE PROCEDURE `clean_board` ()
 BEGIN
-	replace into board select * from board_empty;
+replace into board select * from board_empty;
 	update `players` set username=null, token=null;
     update `game_status` set `status`='not active', `p_turn`=null, `result`=null;
-END ;;
+END$$
+
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
