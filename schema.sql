@@ -79,7 +79,7 @@ CREATE TABLE `game_status` (
   `p_turn` int(11) DEFAULT NULL,
   `selected_piece` int(11) DEFAULT NULL,
   `result` enum('1','2','D') DEFAULT NULL,
-  `last_change` timestamp NULL DEFAULT NULL,
+  `last_change` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP(),
   KEY `selected_piece` (`selected_piece`),
   KEY `p_turn` (`p_turn`),
   CONSTRAINT `game_status_ibfk_2` FOREIGN KEY (`p_turn`) REFERENCES `players` (`id`),
@@ -152,6 +152,10 @@ INSERT INTO `players` VALUES (1,NULL,NULL,NULL),(2,NULL,NULL,NULL);
 UNLOCK TABLES;
 
 --
+-- Dumping events for database 'quarto_adise'
+--
+
+--
 -- Dumping routines for database 'quarto_adise'
 --
 /*!50003 DROP PROCEDURE IF EXISTS `clean_board` */;
@@ -175,18 +179,23 @@ replace into board select * from board_empty;
 END$$
 
 DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-12-07  2:50:40
+
+DROP procedure IF EXISTS `select_piece`;
+
+DELIMITER $$
+USE `quarto_adise`$$
+CREATE PROCEDURE `select_piece` (piece_id int)
+BEGIN
+Update game_status set selected_piece=piece_id;
+Update pieces set is_available=0 Where id=piece_id;
+update game_status set p_turn=if(p_turn=1,2,1);
+END$$
+
+DELIMITER ;
+
+
+
+
+-- Dump completed on 2021-12-20  4:47:36
