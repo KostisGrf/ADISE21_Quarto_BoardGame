@@ -59,4 +59,20 @@ function set_user($input) {
 	print json_encode($res->fetch_all(MYSQLI_ASSOC), JSON_PRETTY_PRINT);
 		
 }
+
+function current_player($token) {
+	
+	global $mysqli;
+	if($token==null) {return(null);}
+	$sql = 'select * from players where token=?';
+	$st = $mysqli->prepare($sql);
+	$st->bind_param('s',$token);
+	$st->execute();
+	$res = $st->get_result();
+	if($row=$res->fetch_assoc()) {
+		return($row['id']);
+	}
+	return(null);
+}
+
 ?>
