@@ -175,7 +175,8 @@ CREATE PROCEDURE `clean_board` ()
 BEGIN
 replace into board select * from board_empty;
 	update `players` set username=null, token=null;
-    update `game_status` set `status`='not active', `p_turn`=null, `result`=null;
+  update `pieces` set `is_available`=1 Where `is_available`=0;
+  update `game_status` set `status`='not active', `p_turn`=null, `result`=null, `selected_piece`=null;
 END$$
 
 DELIMITER ;
@@ -195,7 +196,19 @@ END$$
 
 DELIMITER ;
 
+DROP procedure IF EXISTS `move_piece`;
+
+DELIMITER $$
+USE `quarto_adise`$$
+CREATE PROCEDURE `move_piece` (piece_id int,x1 int,y1 int)
+BEGIN
+Update board set piece_id=piece_id Where x=x1 and y=y1;
+update game_status set selected_piece=null;
+END$$
+
+DELIMITER ;
 
 
 
--- Dump completed on 2021-12-20  4:47:36
+
+-- Dump completed on 2021-12-27  5:32:38
