@@ -30,12 +30,12 @@ switch ($r=array_shift($request)) {
             case '':
             case null: handle_board($method);
                         break;
-            case 'piece':handle_piece($method, $request[0], $input);
-                        break;
+            // case 'piece':handle_piece($method, $request[0], $input);
+            //             break;
             default:header("HTTP/1.1 404 Not Found");
                         break;        
-        }
-    case 'piece':handle_piece2($method,$request[0],$input);
+        }break;
+    case 'piece':handle_piece($method,$request[0],$input);
                     break;
 
     case 'status':
@@ -82,16 +82,24 @@ function handle_player($method, $p,$input) {
 }
 
 function handle_piece($method, $request, $input){
-    
-}
-
-function handle_piece2($method,$request,$input){
     if($request=='select'){
         if($method=='POST'){
             select_piece($input);
+        }elseif($method=='GET'){
+            getSelectedPiece();
         }
+    }elseif($request=='move'){
+        move_piece($input);
     }
 }
+
+// function handle_piece2($method,$request,$input){
+//     if($request=='select'){
+//         if($method=='POST'){
+//             select_piece($input);
+//         }
+//     }
+// }
 
 
                     
