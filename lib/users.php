@@ -1,5 +1,7 @@
 <?php
 
+require_once "../lib/game.php";
+
 function show_users() {
 	global $mysqli;
 	$sql = 'select username,id from players';
@@ -9,7 +11,7 @@ function show_users() {
 	header('Content-type: application/json');
 	print json_encode($res->fetch_all(MYSQLI_ASSOC), JSON_PRETTY_PRINT);
 }
-function show_user($method,$id) {
+function show_user($id) {
 	global $mysqli;
 	$sql = 'select username,id from players where id=?';
 	$st = $mysqli->prepare($sql);
