@@ -29,13 +29,13 @@ switch ($r=array_shift($request)) {
         switch ($b=array_shift($request)) {
             case '':
             case null: handle_board($method);
+                        break;            
+            case 'piece':handle_piece_board($method,$input);
                         break;
-            // case 'piece':handle_piece($method, $request[0], $input);
-            //             break;
             default:header("HTTP/1.1 404 Not Found");
                         break;        
         }break;
-    case 'piece':handle_piece($method,$request[0],$input);
+    case 'piece':handle_piece($method,$request,$input);
                     break;
 
     case 'status':
@@ -56,53 +56,61 @@ function handle_board($method) {
         show_board();
     } else if ($method=='POST') {
         reset_board();
-    } else {
-        header('HTTP/1.1 405 Method Not Allowed');
-    } 
+    } else{header("HTTP/1.1 400 Bad Request");
+        print json_encode(['errormesg'=>"Method $method not allowed here."]);}
+}
+
+function handle_piece_board($method,$input){
+    if($method=='GET') {
+        showPieceByPosition($input);
+    }else{header("HTTP/1.1 400 Bad Request");
+          print json_encode(['errormesg'=>"Method $method not allowed here."]);}
 }
 
 function handle_status($method){
     if($method=='GET') {
         show_status();
-    } else {
-        header('HTTP/1.1 405 Method Not Allowed');
-    }
-
+    } else{header("HTTP/1.1 400 Bad Request");
+        print json_encode(['errormesg'=>"Method $method not allowed here."]);}
 }
 
 function handle_player($method, $p,$input) {
     $b=array_shift($p);
     if($b=='' or null){
-        if($method=='GET'){show_users($method);}
+        if($method=='GET'){show_users();}
         elseif($method=='PUT'){set_user($input);}
         else{header("HTTP/1.1 400 Bad Request");
             print json_encode(['errormesg'=>"Method $method not allowed here."]);}
         
-    }else{show_user($method,$b);}
+    }else{
+        if($method=='GET'){
+        show_user($b);
+        }else{header("HTTP/1.1 400 Bad Request");
+            print json_encode(['errormesg'=>"Method $method not allowed here."]);}
+    }
 }
 
 function handle_piece($method, $request, $input){
-    if($request=='select'){
+    $b=array_shift($request);
+    if($b=='select'){
         if($method=='POST'){
             select_piece($input);
         }elseif($method=='GET'){
             getSelectedPiece();
         }
-    }elseif($request=='move'){
-        move_piece($input);
+    }elseif($b=='move'){
+        if($method=='POST'){
+            move_piece($input);
+        }else{header("HTTP/1.1 400 Bad Request");
+            print json_encode(['errormesg'=>"Method $method not allowed here."]);}
+    }elseif($b=='available'){
+        if($method=='GET'){
+           show_available_pieces();
+        }else{header("HTTP/1.1 400 Bad Request");
+            print json_encode(['errormesg'=>"Method $method not allowed here."]);}
+    }elseif($b=='' or null){
+        readPieceId($input);
     }
 }
-
-// function handle_piece2($method,$request,$input){
-//     if($request=='select'){
-//         if($method=='POST'){
-//             select_piece($input);
-//         }
-//     }
-// }
-
-
-                    
-
 
 ?>
