@@ -1,4 +1,7 @@
 <?php 
+
+require_once "../lib/users.php";
+    
     function show_status(){
         header('Content-type: application/json');
         global $mysqli;
@@ -72,5 +75,15 @@
 	$status = $res->fetch_assoc();
 	return ($status);
 }
+
+    function setResult($id){
+        global $mysqli;
+        
+        $p_turn=null;       
+        $sql='update game_status set result=?, p_turn=?';
+        $st = $mysqli->prepare($sql);
+        $st->bind_param('ss',$id,$p_turn);
+        $st->execute();
+    }
     ?>
 
