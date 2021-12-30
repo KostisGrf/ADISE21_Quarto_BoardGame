@@ -36,6 +36,20 @@ function set_user($input) {
 	$st->execute();
 	$res = $st->get_result();
 	$r = $res->fetch_all(MYSQLI_ASSOC);
+
+	$sql2 = 'select count(*) as c from players where username=?';
+	$st2 = $mysqli->prepare($sql2);
+	$st2->bind_param('s',$username);
+	$st2->execute();
+	$res2 = $st2->get_result();
+	$r2 = $res2->fetch_all(MYSQLI_ASSOC);
+	
+	if($r2[0]['c']>0){
+		header("HTTP/1.1 400 Bad Request");
+		print json_encode(['errormesg'=>"This username already exists."]);
+		exit;
+	}
+
 	if($r[0]['c']>0) {
         $id='2';
         $sql = 'update players set username=?, token=md5(CONCAT( ?, NOW()))  where id=?';
