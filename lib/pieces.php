@@ -127,6 +127,11 @@ function move_piece($input){
 		print json_encode(['errormesg'=>"You must choose a piece for your opponent."]);
 		exit;
     }
+    if($input['x']<=0 ||$input['x']>4||$input['y']<=0||$input['y']>4){
+        header("HTTP/1.1 400 Bad Request");
+		print json_encode(['errormesg'=>"This move is illegal."]);
+		exit;
+    }
 
     if(empty_cell($input['x'],$input['y'])){
         do_move($input['x'],$input['y']);
