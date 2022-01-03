@@ -25,20 +25,20 @@ function select_piece($input){
     }
     
     $player = current_player($input['token']);
-	if($player==null ) {
+    if($player==null ) {
 		header("HTTP/1.1 400 Bad Request");
 		print json_encode(['errormesg'=>"You are not a player of this game."]);
 		exit;
 	}
 	$status = read_status();
-	if($status['status']!='started') {
-		header("HTTP/1.1 400 Bad Request");
-		print json_encode(['errormesg'=>"Game is not in action."]);
-		exit;
-	}
     if($status['result']!=null) {
 		header("HTTP/1.1 400 Bad Request");
 		print json_encode(['errormesg'=>"The game is over."]);
+		exit;
+	}
+	if($status['status']!='started') {
+		header("HTTP/1.1 400 Bad Request");
+		print json_encode(['errormesg'=>"Game is not in action."]);
 		exit;
 	}
     if($status['p_turn']!=$player) {
@@ -107,14 +107,14 @@ function move_piece($input){
 		exit;
 	}
 	$status = read_status();
-	if($status['status']!='started') {
-		header("HTTP/1.1 400 Bad Request");
-		print json_encode(['errormesg'=>"Game is not in action."]);
-		exit;
-	}
     if($status['result']!=null) {
 		header("HTTP/1.1 400 Bad Request");
 		print json_encode(['errormesg'=>"The game is over."]);
+		exit;
+	}
+	if($status['status']!='started') {
+		header("HTTP/1.1 400 Bad Request");
+		print json_encode(['errormesg'=>"Game is not in action."]);
 		exit;
 	}
     if($status['p_turn']!=$player) {
