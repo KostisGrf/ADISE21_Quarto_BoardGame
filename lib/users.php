@@ -1,6 +1,8 @@
 <?php
 
 require_once "../lib/game.php";
+require_once "../lib/board.php";
+
 
 function show_users() {
 	global $mysqli;
@@ -24,19 +26,31 @@ function show_user($id) {
 
 function set_user($input) {
 	$id=0;
+	global $mysqli;
+	
     if(!isset($input['username']) || $input['username']=='') {
 		header("HTTP/1.1 400 Bad Request");
 		print json_encode(['errormesg'=>"No username given."]);
 		exit;
 	}
-	$username=$input['username'];
-	global $mysqli;
-	$sql = 'select count(*) as c from players where id=1 and username is not null';
-	$st = $mysqli->prepare($sql);
-	$st->execute();
-	$res = $st->get_result();
-	$r = $res->fetch_all(MYSQLI_ASSOC);
 
+	check_abort();
+	
+	$status = read_status();
+	if($status['status']=='started') {
+		header("HTTP/1.1 400 Bad Request");
+		print json_encode(['errormesg'=>"Game is in action."]);
+		exit;
+	}
+
+	if($status['status']=='aborded'||$status['status']=='ended'){
+		$sql = 'call clean_board()';
+	    $mysqli->query($sql);
+	}
+
+	
+
+	$username=$input['username'];
 	$sql2 = 'select count(*) as c from players where username=?';
 	$st2 = $mysqli->prepare($sql2);
 	$st2->bind_param('s',$username);
@@ -49,6 +63,13 @@ function set_user($input) {
 		print json_encode(['errormesg'=>"This username already exists."]);
 		exit;
 	}
+
+	
+	$sql = 'select count(*) as c from players where id=1 and username is not null';
+	$st = $mysqli->prepare($sql);
+	$st->execute();
+	$res = $st->get_result();
+	$r = $res->fetch_all(MYSQLI_ASSOC);
 
 	if($r[0]['c']>0) {
         $id='2';
