@@ -136,7 +136,7 @@ CREATE TABLE `players` (
   `id` int(11) NOT NULL,
   `username` varchar(20) DEFAULT NULL,
   `token` varchar(100) DEFAULT NULL,
-  `last_action` timestamp NULL DEFAULT NULL,
+  `last_action` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP(),
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
