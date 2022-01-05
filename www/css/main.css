@@ -1,0 +1,57 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;1,600&display=swap");
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  background: #6fd081;
+  background: url("/www/images/grass.png") no-repeat, -webkit-gradient(linear, left bottom, left top, color-stop(7%, #6fd081), color-stop(80%, #63c8c2));
+  background: url("/www/images/grass.png") no-repeat, linear-gradient(0deg, #6fd081 7%, #63c8c2 80%);
+  background-position: bottom;
+  background-size: 100% auto;
+  font-family: 'Poppins';
+}
+
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+h1, p {
+  margin: 0;
+}
+
+.container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.title {
+  position: relative;
+  margin-bottom: 4em;
+  text-align: center;
+  color: white;
+}
+
+.title h1 {
+  font-size: 5em;
+}
+
+.menu input {
+  display: block;
+  margin-bottom: .8em;
+  width: 100%;
+  background: none;
+  border: 2px solid white;
+  color: white;
+  font-size: 3em;
+  text-align: center;
+  padding: .1em 4em;
+}
+
+.menu input:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+/*# sourceMappingURL=main.css.map */
