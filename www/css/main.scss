@@ -40,7 +40,8 @@ h1,p{margin: 0;}
 }
 
 .menu{
-    input{
+    a{
+        text-decoration: none;
         display: block;
         margin-bottom: .8em;
         width: 100%;
@@ -57,3 +58,165 @@ h1,p{margin: 0;}
     }
 }
 
+.user-login{
+    text-align: center;
+
+    h1{
+        color: white;
+        margin-bottom:1em ;
+    }
+
+    .fa-users{
+        font-size: 3.5em;
+        color: white;
+        margin-bottom: .5em;
+    }
+
+    .btn-login{
+        display: block;
+        margin-top: .5em;
+        position: relative;
+        background: none;
+        border: none;
+        padding:0;
+        left: 45%;
+        cursor: pointer;
+    }
+
+    .fa-check-circle{
+        border-radius: 5em;
+        font-size: 3em;
+        color: white;
+
+        &:hover{
+            background: rgba(255,255,255,.3);
+        }
+    }
+    }
+
+
+.username-input{
+    width: 100%;
+    padding: .8em;
+    margin-bottom: 1em;
+    border-radius: .3em;
+    border: 1px solid gray;
+    box-sizing: border-box;
+}
+
+.rules{
+    display: block;
+    border: 2px solid white;
+    padding: .2em 1em;
+    color: #F2F2F2;
+    height: 60vh;
+    overflow-y: scroll;
+    border-radius: .5em;
+    width: auto;
+
+    li{
+        margin-bottom:.8em
+    }
+    .rules-title {
+        text-align: center;
+        font-size: 3em;
+        margin-bottom: .5em;
+    }
+
+    
+   
+}
+
+.btn-home{
+    display: block;
+    margin-top: .5em;
+    position: relative;
+    background: none;
+    border: none;
+    text-align: center;
+    padding:.2em .5em;
+    top: 5em;
+    cursor: pointer;
+    text-decoration: none;
+
+    .fa-home{
+        border: 2px solid white;
+        font-size: 2em;
+        color: white;
+       
+        padding:.3em;
+        border-radius: 5em;
+
+        &:hover{
+            background: rgba(255,255,255,.3);
+        }
+    }
+
+    
+}
+
+.about{
+    border:2px solid white;
+    border-radius: .5em;
+    color: #F2F2F2;
+    padding: .2em 1em;
+    h1{
+        margin-bottom: 1em;
+        font-size: 2em;
+        text-align: center;
+    }
+
+    p{
+        font-size: 1.3em;
+        margin-bottom: .5em;
+    }
+
+}
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
+
+  table{
+      height: 50vh;
+      width: 50vh;
+
+      td{
+          text-align:center;
+          width: 14vh;
+          height: 14vh;
+      }
+
+      img{
+          height: 10vh;
+          width: 10vh;
+          padding: 0;
+      }
+  }
+
+
+@media only screen and (max-width:1200px){
+    .rules{
+        width: 60vw;
+        height: 60vh;}
+}
+
+@media only screen and (max-width:768px){
+
+
+
+
+    .rules{
+        width: 85vw;
+        height: 80vh;
+
+        .rules-title{
+            margin-bottom: .8em;
+        }
+    }
+
+    .btn-home{
+        top: 1em;
+    }
+}
