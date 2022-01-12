@@ -4,8 +4,8 @@ body, html {
   padding: 0;
   height: 100vh;
   background: #6fd081;
-  background: url("/www/images/grass.png") no-repeat, -webkit-gradient(linear, left bottom, left top, color-stop(7%, #6fd081), color-stop(80%, #63c8c2));
-  background: url("/www/images/grass.png") no-repeat, linear-gradient(0deg, #6fd081 7%, #63c8c2 80%);
+  background: url("../images/grass.png") no-repeat, -webkit-gradient(linear, left bottom, left top, color-stop(7%, #6fd081), color-stop(80%, #63c8c2));
+  background: url("../images/grass.png") no-repeat, linear-gradient(0deg, #6fd081 7%, #63c8c2 80%);
   background-position: bottom;
   background-size: 100% auto;
   font-family: 'Poppins';
