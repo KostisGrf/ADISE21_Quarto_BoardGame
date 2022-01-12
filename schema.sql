@@ -190,7 +190,6 @@ USE `quarto_adise`$$
 CREATE PROCEDURE `select_piece` (piece_id int)
 BEGIN
 Update game_status set selected_piece=piece_id;
-Update pieces set is_available=0 Where id=piece_id;
 update game_status set p_turn=if(p_turn=1,2,1);
 END$$
 
@@ -203,6 +202,7 @@ USE `quarto_adise`$$
 CREATE PROCEDURE `move_piece` (piece_id int,x1 int,y1 int)
 BEGIN
 Update board set piece_id=piece_id Where x=x1 and y=y1;
+Update pieces set is_available=0 Where id=piece_id;
 update game_status set selected_piece=null;
 END$$
 
