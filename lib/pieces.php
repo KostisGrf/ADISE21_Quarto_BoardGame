@@ -18,6 +18,7 @@ function read_available_pieces(){
 }
     
 function select_piece($input){
+
     $res=read_available_pieces();    
     $available_pieces=array();
     while($row=$res->fetch_assoc()){
@@ -79,6 +80,9 @@ function do_select($id){
     $st = $mysqli->prepare($sql);
     $st->bind_param('i',$id);
 	$st->execute();
+
+    header('Content-type: application/json');
+	print json_encode(['message'=>"the piece has been selected."]);
 
 }
 
@@ -173,6 +177,9 @@ function do_move($x,$y){
     $st = $mysqli->prepare($sql);
     $st->bind_param('iii',$selected_piece['selected_piece'],$x,$y);
 	$st->execute();
+
+    header('Content-type: application/json');
+	print json_encode(['message'=>"the move has been completed."]);
 }
 
 function readPieceId($input){

@@ -20,7 +20,7 @@ require_once "../lib/users.php";
     function check_abort() {
         global $mysqli;
         
-        $sql = "update game_status set status='aborded',result=if(p_turn='1','2','1'), p_turn=null, selected_piece=null where p_turn is not null and last_change<(now()-INTERVAL 5 MINUTE) and status='started'";
+        $sql = "update game_status set status='aborded',result=if(p_turn='1','2','1'), p_turn=null, selected_piece=null where p_turn is not null and last_change<(now()-INTERVAL 10 MINUTE) and status='started'";
         $st = $mysqli->prepare($sql);
         $st->execute();
         
