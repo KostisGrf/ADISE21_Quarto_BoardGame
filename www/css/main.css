@@ -18,6 +18,7 @@ body, html {
 
 h1, p {
   margin: 0;
+  padding: 0;
 }
 
 .container {
@@ -166,32 +167,128 @@ h1, p {
   margin-bottom: .5em;
 }
 
-table, th, td {
+table.board_table, table.board_table th, table.board_table td {
   border: 1px solid black;
   border-collapse: collapse;
 }
 
 table {
-  height: 50vh;
-  width: 50vh;
+  height: 60vh;
+  width: 30vw;
 }
 
 table td {
   text-align: center;
-  width: 14vh;
+  width: 8vw;
   height: 14vh;
 }
 
 table img {
-  height: 10vh;
-  width: 10vh;
-  padding: 0;
+  height: auto;
+  max-width: 90px;
+  padding: .8em .1em;
+}
+
+caption {
+  color: white;
+  font-size: 1.5em;
+}
+
+.play-container {
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.play-container p {
+  color: white;
+  padding-left: 1.5em;
+  width: auto;
+}
+
+.play-container h1 {
+  margin-top: .8em;
+  color: white;
+  font-size: 1.8em;
+  padding-left: .8em;
+  width: auto;
+}
+
+.play-container h1 .arrow {
+  padding-left: .8em;
+  marging: 0;
+}
+
+.flexbox-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 20em;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.board_table, .pieces_table {
+  position: relative;
+  top: 5vh;
+  left: 15vh;
+}
+
+.board_table td:hover, .pieces_table td:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.selectedPiece {
+  background-color: rgba(255, 255, 255, 0.5);
+  border: 1px solid black;
+}
+
+@media only screen and (max-width: 1470px) {
+  .flexbox-container {
+    gap: 10em;
+  }
+}
+
+@media only screen and (max-width: 1290px) {
+  .flexbox-container {
+    gap: 8em;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .flexbox-container {
+    gap: 6em;
+  }
+  .flexbox-container table {
+    height: 40vh;
+    width: 45vh;
+  }
+}
+
+@media only screen and (max-width: 1070px) {
+  .flexbox-container {
+    gap: 2em;
+  }
+  .flexbox-container table {
+    height: 35vh;
+    width: 40vh;
+  }
 }
 
 @media only screen and (max-width: 1200px) {
   .rules {
     width: 60vw;
     height: 60vh;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .flexbox-container {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
   }
 }
 
@@ -205,6 +302,22 @@ table img {
   }
   .btn-home {
     top: 1em;
+  }
+}
+
+@media only screen and (max-width: 530px) {
+  .board_table, .pieces_table {
+    left: 1em;
+  }
+}
+
+@media only screen and (max-width: 375px) {
+  .board_table, .pieces_table {
+    left: .3em;
+  }
+  .board_table img, .pieces_table img {
+    height: auto;
+    max-width: 80px;
   }
 }
 /*# sourceMappingURL=main.css.map */
