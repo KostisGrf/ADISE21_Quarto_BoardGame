@@ -160,6 +160,7 @@ h1,p{margin: 0;padding: 0;}
     border-radius: .5em;
     color: #F2F2F2;
     padding: .2em 1em;
+    width: auto;
     h1{
         margin-bottom: 1em;
         font-size: 2em;
@@ -177,15 +178,15 @@ table.board_table, table.board_table th, table.board_table td{
     border: 1px solid black;
     border-collapse: collapse; 
   }
-
+  .flexbox-container{
   table{
       height: 60vh;
       width: 30vw;
-
+   
       td{
           text-align:center;
-          width: 8vw;
-          height: 14vh;
+          width: 100px;
+          height:14vh;
       }
 
       img{
@@ -193,7 +194,7 @@ table.board_table, table.board_table th, table.board_table td{
           max-width:90px;
           padding: .8em .1em;
       }
-  }
+  }}
 
   caption{
       color: white;
@@ -220,7 +221,7 @@ table.board_table, table.board_table th, table.board_table td{
 
            .arrow{
                padding-left:.8em;
-               marging:0;
+               margin:0;
            }
        }
     }
@@ -266,8 +267,11 @@ table.board_table, table.board_table th, table.board_table td{
     .flexbox-container{
         gap: 6em;
         table{
-            height: 40vh;
-            width: 45vh;
+            height: 60vh;
+            width: 40vw;
+            img{
+                padding: .4em .1em;
+            }
             
         
         }
@@ -276,14 +280,13 @@ table.board_table, table.board_table th, table.board_table td{
 
 @media only screen and (max-width:1070px){
     .flexbox-container{
-        gap: 2em;
-        table{
-            height: 35vh;
-            width: 40vh;
-        
+        gap: 5em;}
+        .board_table,.pieces_table{
+            left: 5em;
         }
+
     }
-}
+
 
 
 @media only screen and (max-width:1200px){
@@ -295,6 +298,11 @@ table.board_table, table.board_table th, table.board_table td{
 @media only screen and (max-width:900px){
     .flexbox-container{
         flex-direction: column;
+    
+
+    table{
+        height: 60vh;
+        width: 80vw;}
     }
 }
 
@@ -312,12 +320,32 @@ table.board_table, table.board_table th, table.board_table td{
     .btn-home{
         top: 1em;
     }
+
+    .menu{
+        a{
+            font-size:2em ;
+        }
+    }
+}
+
+
+@media only screen and (max-width:600px){
+    .about{
+        width: 70vw;
+    }
 }
 
 @media only screen and (max-width:530px){
     .board_table,.pieces_table{
-        left: 1em;
-    }
+            left: 1em;}
+        .flexbox-container{
+            table{
+                height: 60vh;
+                width: 92vw;}
+            }
+        
+        
+    
 }
 
 @media only screen and (max-width:375px){
@@ -329,4 +357,15 @@ table.board_table, table.board_table th, table.board_table td{
             max-width:80px;
         }
     } 
+    .menu{
+        a{
+            font-size: 1.5em;
+        }
+    }
+}
+
+@media only screen and (max-width:375px){
+    .menu{
+
+    }
 }

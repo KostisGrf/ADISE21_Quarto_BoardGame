@@ -154,6 +154,7 @@ h1, p {
   border-radius: .5em;
   color: #F2F2F2;
   padding: .2em 1em;
+  width: auto;
 }
 
 .about h1 {
@@ -172,18 +173,18 @@ table.board_table, table.board_table th, table.board_table td {
   border-collapse: collapse;
 }
 
-table {
+.flexbox-container table {
   height: 60vh;
   width: 30vw;
 }
 
-table td {
+.flexbox-container table td {
   text-align: center;
-  width: 8vw;
+  width: 100px;
   height: 14vh;
 }
 
-table img {
+.flexbox-container table img {
   height: auto;
   max-width: 90px;
   padding: .8em .1em;
@@ -215,7 +216,7 @@ caption {
 
 .play-container h1 .arrow {
   padding-left: .8em;
-  marging: 0;
+  margin: 0;
 }
 
 .flexbox-container {
@@ -261,18 +262,20 @@ caption {
     gap: 6em;
   }
   .flexbox-container table {
-    height: 40vh;
-    width: 45vh;
+    height: 60vh;
+    width: 40vw;
+  }
+  .flexbox-container table img {
+    padding: .4em .1em;
   }
 }
 
 @media only screen and (max-width: 1070px) {
   .flexbox-container {
-    gap: 2em;
+    gap: 5em;
   }
-  .flexbox-container table {
-    height: 35vh;
-    width: 40vh;
+  .board_table, .pieces_table {
+    left: 5em;
   }
 }
 
@@ -290,6 +293,10 @@ caption {
         -ms-flex-direction: column;
             flex-direction: column;
   }
+  .flexbox-container table {
+    height: 60vh;
+    width: 80vw;
+  }
 }
 
 @media only screen and (max-width: 768px) {
@@ -303,11 +310,24 @@ caption {
   .btn-home {
     top: 1em;
   }
+  .menu a {
+    font-size: 2em;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .about {
+    width: 70vw;
+  }
 }
 
 @media only screen and (max-width: 530px) {
   .board_table, .pieces_table {
     left: 1em;
+  }
+  .flexbox-container table {
+    height: 60vh;
+    width: 92vw;
   }
 }
 
@@ -318,6 +338,9 @@ caption {
   .board_table img, .pieces_table img {
     height: auto;
     max-width: 80px;
+  }
+  .menu a {
+    font-size: 1.5em;
   }
 }
 /*# sourceMappingURL=main.css.map */
