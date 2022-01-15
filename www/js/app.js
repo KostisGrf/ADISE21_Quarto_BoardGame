@@ -1,8 +1,5 @@
-var me=[{token:null,id:null,username:null},];
-var opponent={}
+var me=[{token:null,id:null,username:null}];
 var game_status={status:null,selected_piece:null,last_change:null};
-var board={};
-var last_update=new Date().getTime();
 var timer=null;
 
 
@@ -32,11 +29,6 @@ function do_goto_page(page) {
 
 function load_content(page) {
 	$('#maincontent').load("pages/"+page+".html");
-	
-
-	// if(page=='play'){
-	// 	checkContainer();
-	// }
 }
 
 
@@ -175,7 +167,6 @@ function login_result(data) {
 	}
 	
 	function update_status(data) {
-		last_update=new Date().getTime();
 		var game_stat_old = game_status;
 		game_status=data[0];
 		if(game_stat_old.status===null && (game_status.status=="initialized"||game_status.status==="started")){
@@ -238,9 +229,12 @@ function login_result(data) {
 						$('#player1-message').text("Draw!");
 						$('#player2-message').text("Draw!");
 					}
-					setTimeout(()=>{alert('The game is over.You will be kicked in 15 seconds')},1000)
+					setTimeout(()=>{alert('The game is over.You will be kicked in 15 seconds')},2500)
+					clearTimeout(timer);
+					me=[{token:null,id:null,username:null}];
+					game_status={status:null,selected_piece:null,last_change:null};
+					timer=null;
 					setTimeout(reset_board, 15000);
-					
 				}
 		}
 	}
@@ -256,7 +250,6 @@ function login_result(data) {
 	}
 
 	function update_username1(data){
-		console.log(data);
 		$('#player1').text(data[0].username);
 	}
 
@@ -269,7 +262,6 @@ function login_result(data) {
 	}
 
 	function update_username2(data){
-		console.log(data[0]);
 		$('#player2').text(data[0].username);
 	}
 
@@ -277,7 +269,6 @@ function login_result(data) {
 		$.ajax({url: "api.php/board/", 
 		 method: 'POST'});
 		window.location.hash="player_name";
-		location.reload();
 	}
 
 function load_not_found(){
