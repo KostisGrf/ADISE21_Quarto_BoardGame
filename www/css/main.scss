@@ -121,10 +121,7 @@ h1,p{margin: 0;padding: 0;}
         text-align: center;
         font-size: 3em;
         margin-bottom: .5em;
-    }
-
-    
-   
+    } 
 }
 
 .btn-home{
@@ -151,8 +148,10 @@ h1,p{margin: 0;padding: 0;}
             background: rgba(255,255,255,.3);
         }
     }
+}
 
-    
+.ctr{
+    left: 0.3em;
 }
 
 .about{
@@ -247,9 +246,6 @@ table.board_table, table.board_table th, table.board_table td{
         background-color: rgba(255,255,255,.5);
         border: 1px solid black;
     }
-        
-  
-
   
   @media only screen and (max-width:1470px){
     .flexbox-container{
@@ -343,9 +339,6 @@ table.board_table, table.board_table th, table.board_table td{
                 height: 60vh;
                 width: 92vw;}
             }
-        
-        
-    
 }
 
 @media only screen and (max-width:375px){
@@ -361,11 +354,5 @@ table.board_table, table.board_table th, table.board_table td{
         a{
             font-size: 1.5em;
         }
-    }
-}
-
-@media only screen and (max-width:375px){
-    .menu{
-
     }
 }

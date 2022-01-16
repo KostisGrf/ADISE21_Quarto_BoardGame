@@ -149,6 +149,10 @@ h1, p {
   background: rgba(255, 255, 255, 0.3);
 }
 
+.ctr {
+  left: 0.3em;
+}
+
 .about {
   border: 2px solid white;
   border-radius: .5em;
