@@ -50,6 +50,12 @@ function play_listeners(){
 		select_piece(a2[1]);
 	});
 	get_available_pieces();
+	if(me[0].id==1){
+		update_username1(me);
+	}
+	else if(me[0].id==2){
+		update_username2(me);
+	}
 }
 
 
@@ -235,6 +241,7 @@ function login_result(data) {
 					game_status={status:null,selected_piece:null,last_change:null};
 					timer=null;
 					setTimeout(reset_board, 15000);
+					return;
 				}
 		}
 	}
